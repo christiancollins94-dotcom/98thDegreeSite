@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>98th Degree Fitness — Lead Capture</title>
+  <meta name="description" content="Premium personal training & nutrition — Lead capture for 98th Degree Fitness" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#8b5cf6;
+      --accent-2:#06b6d4;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: linear-gradient(180deg, #071029 0%, #071627 60%), var(--bg);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:28px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      gap:24px;
+      font-size:16px;
+    }
+    .container{
+      width:100%;
+      max-width:1100px;
+    }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      margin-bottom:18px;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .logo{
+      width:56px;
+      height:56px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),var(--accent-2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:white;
+      box-shadow: 0 6px 24px rgba(11,12,20,0.5);
+      font-size:18px;
+    }
+    .title{
+      line-height:1;
+    }
+    .title h1{margin:0;font-size:18px;font-weight:700}
+    .title p{margin:0;color:var(--muted);font-size:13px}
+    main{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:20px;
+      align-items:start;
+    }
+    @media (max-width:980px){
+      main{grid-template-columns:1fr; padding-bottom:40px}
+    }
+
+    /* Card */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    /* Form */
+    form .row{display:flex;gap:12px;margin-bottom:12px}
+    form .row.col{flex-direction:column}
+    label{display:block;font-size:13px;margin-bottom:6px;color:var(--muted)}
+    input[type=text], input[type=email], input[type=tel], select, textarea, input[type=number], input[type=date]{
+      width:100%;
+      padding:10px 12px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.02);
+      color: #e6eef6;
+      font-size:14px;
+      outline: none;
+      transition: box-shadow .12s, border-color .12s;
+    }
+    input:focus, select:focus, textarea:focus{
+      box-shadow: 0 6px 18px rgba(139,92,246,0.12);
+      border-color: rgba(139,92,246,0.6);
+    }
+    textarea{min-height:96px;resize:vertical;padding-top:10px}
+    .muted{color:var(--muted);font-size:13px;margin-top:6px}
+
+    .actions{display:flex;gap:10px;align-items:center;margin-top:8px}
+    button{
+      background: linear-gradient(90deg,var(--accent),var(--accent-2));
+      border:none;
+      color:white;
+      padding:10px 14px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      box-shadow: 0 8px 20px rgba(11,12,20,0.45);
+    }
+    button.ghost{
+      background: transparent;
+      border:1px solid rgba(255,255,255,0.06);
+      color:var(--muted);
+      font-weight:600;
+      padding:8px 12px;
+    }
+    .secondary{
+      background: linear-gradient(90deg,#2b3440, rgba(255,255,255,0.02));
+    }
+
+    /* Leads list */
+    .lead-controls{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:10px;
+    }
+    .search{flex:1;margin-right:12px}
+    .table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:8px;
+      overflow:auto;
+    }
+    table thead th{
+      text-align:left;
+      font-size:12px;
+      color:var(--muted);
+      padding:10px 12px;
+      border-bottom:1px dashed rgba(255,255,255,0.02);
+      position:sticky;
+      top:0;
+      backdrop-filter: blur(4px);
+      background: linear-gradient(180deg, rgba(11,17,28,0.6), rgba(11,17,28,0.4));
+    }
+    table tbody td{
+      padding:10px 12px;
+      border-bottom:1px solid rgba(255,255,255,0.02);
+      font-size:14px;
+    }
+    .pill{
+      display:inline-block;padding:6px 8px;border-radius:999px;background:var(--glass);font-size:13px;color:var(--muted)
+    }
+    .empty{
+      text-align:center;color:var(--muted);padding:24px 10px;border-radius:8px;background:transparent;margin-top:12px;
+    }
+    .note{
+      font-size:13px;color:var(--muted);
+    }
+
+    footer{margin-top:14px;color:var(--muted);font-size:13px}
+    small.branding{color:var(--muted);display:block;margin-top:8px}
+    a.link{color:inherit;text-decoration:none;border-bottom:1px dotted rgba(255,255,255,0.03)}
+    .success{background:linear-gradient(90deg,#064e3b,#10b981);padding:10px;border-radius:10px;color:white;margin-bottom:10px}
+    .danger{background:linear-gradient(90deg,#7f1d1d,#ef4444);padding:8px;border-radius:8px;color:white}
+    .compact{font-size:13px;padding:6px 10px;border-radius:8px}
+    .muted-number{color:var(--muted);font-weight:600}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">98°</div>
+        <div class="title">
+          <h1>98th Degree Fitness</h1>
+          <p>Premium training · Nutrition · Weekly & Monthly checkups</p>
+        </div>
+      </div>
+      <div style="text-align:right">
+        <div class="pill">Ideal client: 6-figure STEM professionals</div>
+        <small class="branding">Local leads stored in your browser — export anytime</small>
+      </div>
+    </header>
+
+    <main>
+      <!-- LEFT: Form -->
+      <section class="card" aria-labelledby="lead-form-heading">
+        <h2 id="lead-form-heading" style="margin-top:0;margin-bottom:8px">Capture a lead</h2>
+
+        <div id="msg" aria-live="polite" style="display:none"></div>
+
+        <form id="leadForm" autocomplete="off">
+          <div class="row">
+            <div style="flex:1">
+              <label for="fullName">Full name</label>
+              <input id="fullName" name="fullName" type="text" placeholder="Jane Doe" required />
+            </div>
+            <div style="width:160px">
+              <label for="annualIncome">Annual income</label>
+              <select id="annualIncome" name="annualIncome" aria-label="annual income">
+                <option value="">Select...</option>
+                <option value="75k-99k">$75k–99k</option>
+                <option value="100k-149k">$100k–149k</option>
+                <option value="150k-249k">$150k–249k</option>
+                <option value="250k+">$250k+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div style="flex:1">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="jane@company.com" required />
+            </div>
+            <div style="width:180px">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" placeholder="(555) 555-5555" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div style="flex:1">
+              <label for="occupation">Occupation / Company</label>
+              <input id="occupation" name="occupation" type="text" placeholder="Software engineer — Acme Labs" />
+            </div>
+            <div style="width:140px">
+              <label for="contactTime">Preferred contact</label>
+              <select id="contactTime" name="contactTime">
+                <option value="">Any</option>
+                <option value="morning">Morning</option>
+                <option value="lunch">Lunch</option>
+                <option value="evening">Evening</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row col">
+            <label for="goals">Fitness goals (short)</label>
+            <input id="goals" name="goals" type="text" placeholder="Build muscle, lean out, improve energy" />
+          </div>
+
+          <div class="row">
+            <div style="flex:1">
+              <label for="package">Package interested in</label>
+              <select id="package" name="package">
+                <option value="">Select package...</option>
+                <option value="starter">Starter (program + monthly check)</option>
+                <option value="pro">Pro (program + weekly checkins)</option>
+                <option value="elite">Elite (1:1 coaching + weekly)</option>
+              </select>
+            </div>
+            <div style="width:180px">
+              <label for="startDate">Target start</label>
+              <input id="startDate" name="startDate" type="date" />
+            </div>
+          </div>
+
+          <div class="row col">
+            <label for="notes">Notes (context: schedule, constraints, injuries)</label>
+            <textarea id="notes" name="notes" placeholder="Any details that will help outreach..."></textarea>
+          </div>
+
+          <div class="actions">
+            <button id="saveBtn" type="submit">Save lead</button>
+            <button id="resetBtn" type="button" class="ghost">Clear form</button>
+            <button id="exportBtn" type="button" class="ghost">Export CSV</button>
+            <div style="margin-left:auto;text-align:right">
+              <div class="note">Leads stored locally in this browser. Exports as CSV for CRM import.</div>
+            </div>
+          </div>
+          <input type="hidden" id="editingId" value="" />
+        </form>
+      </section>
+
+      <!-- RIGHT: Leads list -->
+      <aside class="card" aria-labelledby="leads-heading" style="height:fit-content;">
+        <h3 id="leads-heading" style="margin-top:0;margin-bottom:10px">Leads & queue</h3>
+
+        <div class="lead-controls">
+          <input id="quickSearch" class="search" type="text" placeholder="Search by name, email, company, goals..." aria-label="search leads" />
+          <div style="display:flex;gap:8px">
+            <button id="clearAll" class="ghost compact" title="Delete all leads">Clear all</button>
+            <button id="downloadBtn" class="compact">Export</button>
+          </div>
+        </div>
+
+        <div id="leadsContainer" style="max-height:520px; overflow:auto;">
+          <table class="table" id="leadsTable" role="table" aria-label="Leads table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Income</th>
+                <th>Package</th>
+                <th>Goals / Notes</th>
+                <th style="width:120px">Saved</th>
+              </tr>
+            </thead>
+            <tbody id="leadsTbody">
+              <!-- rows inserted here -->
+            </tbody>
+          </table>
+          <div id="emptyState" class="empty" style="display:none">No leads yet — add one using the form to the left.</div>
+        </div>
+
+        <footer>
+          <div class="muted">Tip: Click a row to load it into the form for editing. Use Export to move leads into your CRM.</div>
+        </footer>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    /* Local lead capture script
+       - Saves each lead object to localStorage['98df_leads'] as an array
+       - Provides search, edit, delete, export CSV
+    */
+
+    const KEY = '98df_leads_v1';
+    const form = document.getElementById('leadForm');
+    const msg = document.getElementById('msg');
+    const saveBtn = document.getElementById('saveBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const leadsTbody = document.getElementById('leadsTbody');
+    const emptyState = document.getElementById('emptyState');
+    const quickSearch = document.getElementById('quickSearch');
+    const clearAllBtn = document.getElementById('clearAll');
+    const exportBtn = document.getElementById('exportBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const editingId = document.getElementById('editingId');
+
+    // Utilities
+    function uuid() {
+      return 'id-' + Math.random().toString(36).slice(2,11);
+    }
+    function nowISO() {
+      return new Date().toISOString();
+    }
+
+    function readLeads(){
+      try{
+        const raw = localStorage.getItem(KEY);
+        if(!raw) return [];
+        return JSON.parse(raw) || [];
+      }catch(e){
+        console.error('readLeads parse', e);
+        return [];
+      }
+    }
+    function writeLeads(arr){
+      localStorage.setItem(KEY, JSON.stringify(arr));
+    }
+
+    function showMessage(text, type='success'){
+      msg.style.display='block';
+      msg.className = type === 'success' ? 'success' : 'danger';
+      msg.textContent = text;
+      setTimeout(()=>{ msg.style.display='none'; }, 3000);
+    }
+
+    function renderLeads(filter=''){
+      const leads = readLeads();
+      leadsTbody.innerHTML = '';
+      const filtered = leads.filter(l => {
+        if(!filter) return true;
+        const hay = (l.fullName + ' ' + l.email + ' ' + l.occupation + ' ' + l.goals + ' ' + l.notes).toLowerCase();
+        return hay.includes(filter.toLowerCase());
+      });
+
+      if(filtered.length === 0){
+        emptyState.style.display = 'block';
+        return;
+      } else {
+        emptyState.style.display = 'none';
+      }
+
+      filtered.forEach(l => {
+        const tr = document.createElement('tr');
+        tr.tabIndex = 0;
+        tr.style.cursor = 'pointer';
+        tr.addEventListener('click', () => loadIntoForm(l.id));
+
+        const nameTd = document.createElement('td');
+        nameTd.innerHTML = '<strong>' + escapeHtml(l.fullName || '(no name)') + '</strong><div class="note">' + escapeHtml(l.occupation || '') + '</div>';
+
+        const contactTd = document.createElement('td');
+        contactTd.innerHTML = (l.email ? '<div>' + escapeHtml(l.email) + '</div>' : '') + (l.phone ? '<div class="muted-number">' + escapeHtml(l.phone) + '</div>' : '');
+
+        const incomeTd = document.createElement('td');
+        incomeTd.textContent = l.annualIncome || '';
+
+        const packageTd = document.createElement('td');
+        packageTd.textContent = l.package || '';
+
+        const goalsTd = document.createElement('td');
+        goalsTd.innerHTML = escapeHtml(l.goals || '') + (l.notes ? '<div class="muted" style="margin-top:6px;">' + truncate(escapeHtml(l.notes), 120) + '</div>' : '');
+
+        const actionsTd = document.createElement('td');
+        actionsTd.innerHTML = '<div style="display:flex;gap:8px;align-items:center;justify-content:flex-end;"><button class="ghost compact" title="Delete lead" data-id="' + l.id + '">Delete</button><div class="muted" style="margin-left:8px">' + new Date(l.createdAt).toLocaleString() + '</div></div>';
+
+        // delete button handler
+        actionsTd.querySelector('button').addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          if(!confirm('Delete this lead?')) return;
+          deleteLead(l.id);
+        });
+
+        tr.appendChild(nameTd);
+        tr.appendChild(contactTd);
+        tr.appendChild(incomeTd);
+        tr.appendChild(packageTd);
+        tr.appendChild(goalsTd);
+        tr.appendChild(actionsTd);
+        leadsTbody.appendChild(tr);
+      });
+    }
+
+    function truncate(s, n){ return s.length>n ? s.slice(0,n-1)+'…' : s; }
+    function escapeHtml(str){
+      if(!str) return '';
+      return String(str).replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
+
+    function saveLead(data){
+      const leads = readLeads();
+      if(data.id){
+        // update
+        const idx = leads.findIndex(x=>x.id===data.id);
+        if(idx>=0){
+          leads[idx] = Object.assign({}, leads[idx], data, {updatedAt: nowISO()});
+        } else {
+          leads.push(Object.assign({createdAt: nowISO()}, data));
+        }
+      } else {
+        data.id = uuid();
+        data.createdAt = nowISO();
+        leads.push(data);
+      }
+      writeLeads(leads);
+      renderLeads(quickSearch.value);
+      showMessage('Lead saved', 'success');
+    }
+
+    function deleteLead(id){
+      const leads = readLeads();
+      const filtered = leads.filter(l=>l.id!==id);
+      writeLeads(filtered);
+      renderLeads(quickSearch.value);
+      showMessage('Lead deleted', 'success');
+    }
+
+    function clearAll(){
+      if(!confirm('Delete ALL leads from this browser? This cannot be undone.')) return;
+      localStorage.removeItem(KEY);
+      renderLeads();
+      showMessage('All leads cleared', 'success');
+    }
+
+    function loadIntoForm(id){
+      const leads = readLeads();
+      const l = leads.find(x => x.id === id);
+      if(!l) return;
+      document.getElementById('fullName').value = l.fullName || '';
+      document.getElementById('email').value = l.email || '';
+      document.getElementById('phone').value = l.phone || '';
+      document.getElementById('occupation').value = l.occupation || '';
+      document.getElementById('annualIncome').value = l.annualIncome || '';
+      document.getElementById('contactTime').value = l.contactTime || '';
+      document.getElementById('goals').value = l.goals || '';
+      document.getElementById('package').value = l.package || '';
+      document.getElementById('startDate').value = l.startDate || '';
+      document.getElementById('notes').value = l.notes || '';
+      editingId.value = l.id;
+      window.scrollTo({top:0, behavior:'smooth'});
+      showMessage('Loaded lead for editing — save to update', 'success');
+    }
+
+    function exportCSV(){
+      const leads = readLeads();
+      if(!leads.length){ alert('No leads to export'); return; }
+      const headers = ['id','fullName','email','phone','occupation','annualIncome','contactTime','package','startDate','goals','notes','createdAt','updatedAt'];
+      const rows = leads.map(l => headers.map(h => csvSafe(l[h] || '')).join(','));
+      const csv = [headers.join(','), ...rows].join('\\n');
+      const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const ts = (new Date()).toISOString().slice(0,19).replace(/[:T]/g,'-');
+      a.download = '98df_leads_' + ts + '.csv';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function csvSafe(val){
+      // simple CSV escaper
+      const s = String(val).replace(/"/g, '""');
+      return '"' + s + '"';
+    }
+
+    // Form events
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = {
+        id: editingId.value || '',
+        fullName: form.fullName.value.trim(),
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        occupation: form.occupation.value.trim(),
+        annualIncome: form.annualIncome.value,
+        contactTime: form.contactTime.value,
+        package: form.package.value,
+        startDate: form.startDate.value,
+        goals: form.goals.value.trim(),
+        notes: form.notes.value.trim()
+      };
+
+      // Minimal validation for premium client targeting: email + name required
+      if(!data.fullName){
+        alert('Please enter name');
+        return;
+      }
+      if(!data.email){
+        alert('Please enter email');
+        return;
+      }
+
+      saveLead(data);
+      form.reset();
+      editingId.value = '';
+    });
+
+    resetBtn.addEventListener('click', () => {
+      if(confirm('Clear current form?')) {
+        form.reset();
+        editingId.value = '';
+      }
+    });
+
+    clearAllBtn.addEventListener('click', clearAll);
+    exportBtn.addEventListener('click', exportCSV);
+    downloadBtn.addEventListener('click', exportCSV);
+
+    quickSearch.addEventListener('input', (e) => renderLeads(e.target.value));
+
+    // initial render
+    renderLeads();
+
+    // small helper for friendly guidance when JS disabled
+    if(!window.localStorage){
+      alert('This page requires a modern browser with localStorage enabled to store leads locally.');
+    }
+  </script>
+</body>
+</html>
